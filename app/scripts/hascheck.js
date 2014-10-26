@@ -17,7 +17,6 @@ var Hascheck = {
 
 	init: function () {
 		this.$win = $(window);
-		this.destroyAll();
 		this.createPopover();
 	},
 
