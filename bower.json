@@ -1,0 +1,29 @@
+{
+  "name": "hascheck-for-chrome",
+  "version": "0.0.0",
+  "description": "Spellcheck your text using Hascheck.",
+  "authors": [
+    "Ivan Nikolić"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bourbon": "~4.0.2"
+  },
+  "keywords": [
+    "hascheck",
+    "chrome"
+  ],
+  "private": true,
+  "homepage": "https://github.com/niksy/hascheck-chrome"
+}
