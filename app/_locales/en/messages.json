@@ -1,0 +1,20 @@
+{
+  "appName": {
+    "message": "Hascheck for Chrome"
+  },
+  "appDescription": {
+    "message": "Spellcheck your text using Hascheck."
+  },
+  "closeButton": {
+    "message": "Close"
+  },
+  "applyChangesButton": {
+    "message": "Apply changes"
+  },
+  "preloader": {
+    "message": "Spellchecking your text&#8230;"
+  },
+  "contextMenu": {
+    "message": "Spellcheck \"%s\" with Hascheck"
+  }
+}

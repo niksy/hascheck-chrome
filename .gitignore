@@ -1,0 +1,11 @@
+.DS_Store
+.sass-cache/
+node_modules/
+bower_components/
+src/out/
+test/out/
+
+app/scripts/out/
+app/styles/out/
+dist/
+package/

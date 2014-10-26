@@ -1,0 +1,148 @@
+@import 'bourbon/dist/bourbon';
+
+%hascheck-element-without-accent {
+	@include transition(opacity 0.15s ease-in-out);
+	opacity:0.5;
+
+	&:hover,
+	&:focus,
+	&:active {
+		opacity:1;
+	}
+}
+
+%hascheck-button {
+	@extend %hascheck-element-without-accent;
+	margin:0; padding:0;
+	outline:0;
+	border:none;
+	background:none;
+	cursor:pointer;
+}
+
+.hascheck-Popover {
+	@include animation(hascheckPopoverShow 0.15s ease-out);
+	position:absolute;
+	margin-top:0.2em;
+	border:1px solid #bbb; border-radius:2px;
+	font:15px/1.4 "Helvetica Neue", sans-serif;
+	color:#333;
+	background:#f6f6f6;
+	box-shadow:0 1px 3px rgba(#000, 0.2);
+
+	& * {
+		font:inherit !important;
+	}
+
+	&--content {
+		min-width:15em; max-width:30em;
+		padding:1.1em;
+	}
+
+	&--preloader {
+		padding:0.8em; padding-left:calc(0.8em + 20px + 0.8em);
+		pointer-events:none;
+
+		&:before {
+			@include transform(translateY(-50%));
+			content:'';
+			position:absolute; left:0.8em; top:50%;
+			width:20px; height:20px;
+			background:url(chrome-extension://__MSG_@@extension_id__/images/spinner.svg);
+		}
+
+		&.is-hidden {
+			@include animation(hascheckPopoverHide 0.15s ease-out);
+			@include animation-fill-mode(forwards);
+		}
+	}
+
+	&-suggestion {
+		margin:0; padding:0; outline:0;
+		border:none; border-bottom:2px solid #f00; border-radius:0;
+		color:inherit;
+		-webkit-appearance:none;
+
+		&.is-valid {
+			border-bottom-color:darken(#0f0, 10%);
+		}
+	}
+
+	&-actions {
+		display:table; width:100%;
+		margin-top:0.7em;
+		border-top:1px solid lighten(#ccc, 5%);
+	}
+
+	&-action {
+		display:table-cell;
+		padding-top:0.7em;
+		vertical-align:middle;
+	}
+
+	&-apply {
+		@extend %hascheck-button;
+		float:right;
+		border-radius:2px;
+		padding:0.4em 0.7em;
+		font-size:0.9em;
+		text-shadow:0 1px rgba(#000, 0.25);
+		color:#fff;
+		background:#1e71c3;
+
+		&:active {
+			background:darken(#1e71c3, 5%);
+		}
+	}
+
+	&-close {
+		@extend %hascheck-button;
+		position:absolute; right:0; top:0;
+		padding:0.4em;
+		line-height:1;
+		color:inherit;
+		opacity:0.2;
+
+		span {
+			position:absolute; top:-9999px; left:-9999px;
+		}
+
+		&:before {
+			content:'';
+			display:block;
+			width:8px; height:8px;
+			background:url(chrome-extension://__MSG_@@extension_id__/images/close.svg);
+		}
+	}
+
+	&-source {
+		@extend %hascheck-element-without-accent;
+		display:block;
+		width:70px; height:18px;
+		text-indent:-9999px;
+		overflow:hidden;
+		background:url(chrome-extension://__MSG_@@extension_id__/images/logo-hascheck.png) no-repeat;
+		background-size:70px auto;
+	}
+}
+
+@include keyframes(hascheckPopoverShow) {
+	0% {
+		transform:translateY(-15px);
+		opacity:0;
+	}
+	100% {
+		transform:translateY(0);
+		opacity:1;
+	}
+}
+@include keyframes(hascheckPopoverHide) {
+	0% {
+		transform:translateY(0);
+		opacity:1;
+	}
+	100% {
+		transform:translateY(-15px);
+		opacity:0;
+	}
+}

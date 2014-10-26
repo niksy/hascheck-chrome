@@ -1,0 +1,20 @@
+{
+  "appName": {
+    "message": "Hascheck za Chrome"
+  },
+  "appDescription": {
+    "message": "Provjeri pravopis koristeći Hascheck."
+  },
+  "closeButton": {
+    "message": "Zatvori"
+  },
+  "applyChangesButton": {
+    "message": "Primjeni ispravke"
+  },
+  "preloader": {
+    "message": "Provjeravam pravopis&#8230;"
+  },
+  "contextMenu": {
+    "message": "Provjeri pravopis za \"%s\" sa Hascheck"
+  }
+}
