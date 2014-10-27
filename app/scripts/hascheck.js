@@ -2,25 +2,24 @@ var $ = require('jquery');
 var hascheck = require('hascheck');
 var fieldSelection = require('field-selection');
 
-function positionElement ( el, data ) {
-	el
-		.css({
-			top: data.bottom,
-			left: data.left
-		})
-		.appendTo('body');
-}
-
 var Hascheck = {
 
 	ns: 'hascheck-Popover',
 
 	init: function () {
-		this.$win = $(window);
+		this.$win  = $(window);
+		this.$wrap = $(this.template.wrap());
 		this.createPopover();
 	},
 
 	template: {
+		wrap: function () {
+			var el = $('#hascheck');
+			if ( !el.length ) {
+				el = $('<div id="hascheck"></div>').appendTo('body');
+			}
+			return el;
+		},
 		popover: function ( ns ) {
 			return '<div class="'+ns+' '+ns+'--content"><button type="button" class="'+ns+'-close" title="'+chrome.i18n.getMessage('closeButton')+'"><span>'+chrome.i18n.getMessage('closeButton')+'</span></button><div class="'+ns+'-text"></div><div class="'+ns+'-actions"><div class="'+ns+'-action"><a href="http://http://hacheck.tel.fer.hr/" class="'+ns+'-source">Hascheck</a></div><div class="'+ns+'-action"><button type="button" class="'+ns+'-apply">'+chrome.i18n.getMessage('applyChangesButton')+'</button></div></div></div>';
 		},
@@ -83,9 +82,20 @@ var Hascheck = {
 	delegateEvents: function () {
 
 		this.$el
-			.on('click', '.'+this.ns+'-apply', $.proxy(this.apply, this))
-			.on('click', '.'+this.ns+'-close', $.proxy(this.destroy, this))
-			.on('change', '.'+this.ns+'-suggestion', $.proxy(this.changeSuggestion, this));
+			.on('click', '.'+this.ns+'-apply', this.apply.bind(this))
+			.on('click', '.'+this.ns+'-close', this.destroy.bind(this))
+			.on('change', '.'+this.ns+'-suggestion', this.changeSuggestion.bind(this));
+
+	},
+
+	positionElement: function ( el ) {
+
+		el
+			.css({
+				top: this.position.bottom,
+				left: this.position.left
+			})
+			.appendTo(this.$wrap);
 
 	},
 
@@ -116,8 +126,7 @@ var Hascheck = {
 			}
 
 			this.$text.html(text);
-
-			positionElement(this.$el, this.position);
+			this.positionElement(this.$el);
 
 		}.bind(this));
 
@@ -126,7 +135,7 @@ var Hascheck = {
 	preloader: function ( show ) {
 		this.$preloader = this.$preloader || $(this.template.preloader(this.ns));
 		if ( show ) {
-			positionElement(this.$preloader, this.position);
+			this.positionElement(this.$preloader);
 		} else {
 			this.$preloader.addClass('is-hidden');
 		}
@@ -161,6 +170,9 @@ var Hascheck = {
 
 	destroy: function () {
 		this.$el.remove();
+		if ( !this.$wrap.children().length ) {
+			this.$wrap.remove();
+		}
 	},
 
 	destroyAll: function () {
