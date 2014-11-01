@@ -132,7 +132,7 @@ module.exports = function ( grunt ) {
 		},
 
 		clean: {
-			dist: ['dist/']
+			dist: ['dist/', 'package/']
 		},
 
 		copy: {
