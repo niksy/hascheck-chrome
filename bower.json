@@ -1,6 +1,6 @@
 {
   "name": "hascheck-for-chrome",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Spellcheck your text using Hascheck.",
   "authors": [
     "Ivan Nikolić"
